@@ -8,8 +8,7 @@
  * @author jojokine
  */
 public class kentta {
+
     private int kaannot;
     private int parit;
-    private laatta [] laatat;
-    
 }

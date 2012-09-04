@@ -8,6 +8,16 @@
  * @author jojokine
  */
 public class laatta {
-    
-    
+
+    private int tunniste;
+
+    public void nayta() {
+    }
+
+    public void piilota() {
+    }
+
+    public int tunniste() {
+        return tunniste;
+    }
 }

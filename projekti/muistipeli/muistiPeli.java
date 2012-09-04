@@ -8,8 +8,8 @@
  * @author jojokine
  */
 public class muistiPeli {
-    
+
     private int vaikeus;
-    private Kentta kentta;
+    
     
 }
