@@ -18,10 +18,11 @@ public class Kentta {
     private int parit;
     private int kaannettyna;
     private int laattoja;
-//    private Laatta [] laatta;
+    private ArrayList<Laatta> pelinLaatat;
 
+    // private Laatta [] laatta;
     public Kentta(int vaikeus) {
-        ArrayList<Laatta> pelinLaatat = new ArrayList<Laatta>();
+        pelinLaatat = new ArrayList();
         vaikeustaso = vaikeus;
         kaannot = 0;
         parit = 0;
@@ -40,7 +41,11 @@ public class Kentta {
         Collections.shuffle(pelinLaatat);
     }
 
-    public int getLaatat() {
+    public ArrayList<Laatta> getLaatat() {
+        return pelinLaatat;
+    }
+
+    public int getLaattoja() {
         return laattoja;
     }
 
