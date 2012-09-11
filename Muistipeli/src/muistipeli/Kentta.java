@@ -5,6 +5,7 @@
 package muistipeli;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -13,14 +14,19 @@ import java.util.ArrayList;
 public class Kentta {
 
     private int vaikeustaso;
-    private int laatat;
     private int kaannot;
     private int parit;
     private int kaannettyna;
     private int laattoja;
 //    private Laatta [] laatta;
 
-    public Kentta(int vaikeustaso) {
+    public Kentta(int vaikeus) {
+        ArrayList<Laatta> pelinLaatat = new ArrayList<Laatta>();
+        vaikeustaso = vaikeus;
+        kaannot = 0;
+        parit = 0;
+        kaannettyna = 0;
+
         if (vaikeustaso == 0) {
             laattoja = 16;
         } else if (vaikeustaso == 1) {
@@ -28,9 +34,42 @@ public class Kentta {
         } else {
             laattoja = 36;
         }
-        ArrayList<Laatta> laatat = new ArrayList<Laatta>();
-        for (int i = 0; i < vaikeustaso; i++) {
-            laatat.add(new Laatta(i));
+        for (int i = 0; i < laattoja; i++) {
+            pelinLaatat.add(new Laatta(i));
         }
+        Collections.shuffle(pelinLaatat);
+    }
+
+    public int getLaatat() {
+        return laattoja;
+    }
+
+    public int getVaikeus() {
+        return vaikeustaso;
+    }
+
+    public int getKaannot() {
+        return kaannot;
+    }
+
+    public int getParit() {
+        return parit;
+    }
+
+    public int getKaannetyt() {
+        return kaannettyna;
+    }
+
+    public void lisaaKaannettyja() {
+        kaannettyna++;
+    }
+
+    public void nollaaKaannetyt() {
+        kaannettyna = 0;
+    }
+
+    public void eiPari() {
+        nollaaKaannetyt();
+        kaannot++;
     }
 }

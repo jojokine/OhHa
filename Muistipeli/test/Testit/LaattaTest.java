@@ -30,28 +30,28 @@ public class LaattaTest {
 
         // luodun laatan tulisi olla kääntämättä ja löytämättä
         assertFalse(laatta.onkoLoydetty());
-        assertFalse(laatta.tila());
+        assertFalse(laatta.getTila());
     }
 
     @Test
     public void konstruktoriAntaaLaatalleTunnisteenOikein() {
 
         // luodun laatan tunnisteen tulisi olla "5"
-        assertEquals(5, laatta.tunniste(), vertailuTarkkuus);
+        assertEquals(5, laatta.getTunniste(), vertailuTarkkuus);
     }
     
     @Test
     public void laatanTilaOikeinKaannonJalkeen() {
         laatta.nayta();
         // laatan kääntämisen jälkeen sen tilan tulisi olla true
-        assertTrue(laatta.tila());
+        assertTrue(laatta.getTila());
     }
     
     @Test
     public void laatanTilaOikeinTakaisinKaannonJalkeen() {
         laatta.piilota();
         // laatan takaisin kääntämisen jälkeen sen tilan tulisi olla false
-        assertFalse(laatta.tila());
+        assertFalse(laatta.getTila());
     }
     
     @Test

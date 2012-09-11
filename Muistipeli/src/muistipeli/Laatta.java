@@ -32,11 +32,11 @@ public class Laatta {
         laatanTila = false;
     }
 
-    public int tunniste() {
+    public int getTunniste() {
         return tunniste;
     }
 
-    public boolean tila() {
+    public boolean getTila() {
         return laatanTila;
     }
 
