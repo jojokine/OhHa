@@ -9,24 +9,38 @@ package muistipeli;
  * @author jojokine
  */
 public class Laatta {
-    
-    private boolean tila;
-    
+
+    private boolean onkoLoydetty;
+    private boolean laatanTila;
     private int tunniste;
 
+    public Laatta(int laatanTunniste) {
+        onkoLoydetty = false;
+        laatanTila = false;
+        tunniste = laatanTunniste;
+    }
+
+    public void loyda() {
+        onkoLoydetty = true;
+    }
+
     public void nayta() {
-        tila = true;
+        laatanTila = true;
     }
 
     public void piilota() {
-        tila = false;
+        laatanTila = false;
     }
 
     public int tunniste() {
         return tunniste;
     }
-    
+
     public boolean tila() {
-        return tila;
+        return laatanTila;
+    }
+
+    public boolean onkoLoydetty() {
+        return onkoLoydetty;
     }
 }
