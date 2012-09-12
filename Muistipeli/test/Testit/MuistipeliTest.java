@@ -42,8 +42,14 @@ public class MuistipeliTest {
         peli.lisaaKaannettyja();
         assertTrue(muistipeli.Muistipeli.voikoKaantaa(peli, 6));
         peli.getLaatat().get(6).nayta();
-        peli.lisaaKaannettyja();
+        peli.lisaaKaannettyja();    
         assertFalse(muistipeli.Muistipeli.voikoKaantaa(peli, 7));
         
+    }
+    
+    @Test 
+    public void onkoPariVastaaOikeinJosPari(){
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get()
     }
 }
