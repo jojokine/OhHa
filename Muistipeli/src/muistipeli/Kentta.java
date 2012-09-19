@@ -57,6 +57,10 @@ public class Kentta {
         return kaannot;
     }
 
+    public void loytyi() {
+        kaannot++;    
+    }
+
     public int getParit() {
         return parit;
     }
@@ -73,8 +77,10 @@ public class Kentta {
         kaannettyna = 0;
     }
 
-    public void eiPari() {
+    public void eiPari(int laatta1, int laatta2) {
         nollaaKaannetyt();
+        pelinLaatat.get(laatta1).piilota();
+        pelinLaatat.get(laatta2).piilota();                
         kaannot++;
     }
 }

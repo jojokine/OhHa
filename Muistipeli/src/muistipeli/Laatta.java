@@ -43,4 +43,8 @@ public class Laatta {
     public boolean onkoLoydetty() {
         return onkoLoydetty;
     }
+
+    public void setTunniste(int tunniste) {
+        this.tunniste = tunniste;
+    }
 }

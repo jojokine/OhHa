@@ -49,7 +49,19 @@ public class MuistipeliTest {
     
     @Test 
     public void onkoPariVastaaOikeinJosPari(){
+        peli.getLaatat().get(5).setTunniste(1);
         peli.getLaatat().get(5).nayta();
-        peli.getLaatat().get()
+        peli.getLaatat().get(8).setTunniste(2);
+        peli.getLaatat().get(8).nayta();
+        assertTrue(muistipeli.Muistipeli.onkoPari(peli));
+    }
+    
+    @Test 
+    public void onkoPariVastaaOikeinJosEiPari(){
+        peli.getLaatat().get(5).setTunniste(4);
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get(8).setTunniste(2);
+        peli.getLaatat().get(8).nayta();
+        assertFalse(muistipeli.Muistipeli.onkoPari(peli));
     }
 }
