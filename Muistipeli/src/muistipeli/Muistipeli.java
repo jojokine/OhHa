@@ -20,7 +20,6 @@ public class Muistipeli {
 //    private int kaannetty2;
     public static boolean onkoPari(Kentta peli) {
         ArrayList<Laatta> pari = new ArrayList();
-
         for (int i = 0; i < peli.getLaatat().size(); i++) {
             if (peli.getLaatat().get(i).getTila() == true) {
                 pari.add(peli.getLaatat().get(i));
@@ -53,43 +52,39 @@ public class Muistipeli {
 
         muistipeli.Kentta peli;
         peli = new muistipeli.Kentta(1);
-        
-        peli.getLaatat().get(1).setTunniste(1);
-        peli.getLaatat().get(2).setTunniste(2);
-        
-        System.out.println("Anna 1.laatan paikka");
-        paikka1 = lukija.nextInt();
-        System.out.println("Anna 2.laatan paikka");
-        paikka2 = lukija.nextInt();
 
-        if (voikoKaantaa(peli, paikka1)) {
-            peli.getLaatat().get(paikka1).nayta();
-            peli.lisaaKaannettyja();
-        } else {
-            System.out.println("Ei voi kääntää!");
-            return;
+//        peli.getLaatat().get(1).setTunniste(1);
+//        peli.getLaatat().get(2).setTunniste(2);
+
+        while (peli.getParit() <= (peli.getLaattoja() / 2)) {
+            System.out.println("Anna 1.laatan paikka");
+            paikka1 = lukija.nextInt();
+            System.out.println("Anna 2.laatan paikka");
+            paikka2 = lukija.nextInt();
+
+            if (voikoKaantaa(peli, paikka1)) {
+                peli.getLaatat().get(paikka1).nayta();
+                peli.lisaaKaannettyja();
+            } else {
+                System.out.println("Ei voi kääntää!");
+            }
+            if (voikoKaantaa(peli, paikka2)) {
+                peli.getLaatat().get(paikka2).nayta();
+                peli.lisaaKaannettyja();
+            } else {
+                System.out.println("Ei voi kääntää!");
+            }
+
+            if (onkoPari(peli)) {
+                System.out.println("Löysit parin!");
+                peli.nollaaKaannetyt();
+                peli.getLaatat().get(paikka1).loyda();
+                peli.getLaatat().get(paikka2).loyda();
+                peli.loytyi();
+            } else {
+                System.out.println("Ei pari!");
+                peli.eiPari(paikka1, paikka2);
+            }
         }
-
-        if (voikoKaantaa(peli, paikka2)) {
-            peli.getLaatat().get(paikka2).nayta();
-            peli.lisaaKaannettyja();
-        } else {
-            System.out.println("Ei voi kääntää!");
-            return;
-        }
-
-        if (onkoPari(peli)) {
-            System.out.println("Löysit parin!");
-            peli.nollaaKaannetyt();
-            peli.getLaatat().get(paikka1).loyda();
-            peli.getLaatat().get(paikka2).loyda();
-            peli.loytyi();
-        } else {
-            System.out.println("Ei pari!");
-            peli.eiPari(paikka1, paikka2);
-        }
-
-
-        // TODO code application logic here
     }
 }

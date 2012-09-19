@@ -58,7 +58,7 @@ public class Kentta {
     }
 
     public void loytyi() {
-        kaannot++;    
+        parit++;    
     }
 
     public int getParit() {
