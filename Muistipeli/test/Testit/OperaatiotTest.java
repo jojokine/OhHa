@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  *
  * @author osku
  */
-public class MuistipeliTest {
+public class OperaatiotTest {
 
     muistipeli.Kentta peli;
 
@@ -26,24 +26,24 @@ public class MuistipeliTest {
 
     @Test
     public void voikoKaantaaEiAnnaKaantaaSamaa() {
-        assertTrue(muistipeli.Muistipeli.voikoKaantaa(peli, 5));
+        assertTrue(muistipeli.Operaatiot.voikoKaantaa(peli, 5));
         peli.getLaatat().get(5).nayta();
         peli.lisaaKaannettyja();
-        assertFalse(muistipeli.Muistipeli.voikoKaantaa(peli, 5));
+        assertFalse(muistipeli.Operaatiot.voikoKaantaa(peli, 5));
         peli.getLaatat().get(5).piilota();
         peli.nollaaKaannetyt();
-        assertTrue(muistipeli.Muistipeli.voikoKaantaa(peli, 5));
+        assertTrue(muistipeli.Operaatiot.voikoKaantaa(peli, 5));
     }
     
     @Test
     public void voikoKaantaaEiAnnaKaantaaKahtaEnempaa(){
-        assertTrue(muistipeli.Muistipeli.voikoKaantaa(peli, 5));
+        assertTrue(muistipeli.Operaatiot.voikoKaantaa(peli, 5));
         peli.getLaatat().get(5).nayta();
         peli.lisaaKaannettyja();
-        assertTrue(muistipeli.Muistipeli.voikoKaantaa(peli, 6));
+        assertTrue(muistipeli.Operaatiot.voikoKaantaa(peli, 6));
         peli.getLaatat().get(6).nayta();
         peli.lisaaKaannettyja();    
-        assertFalse(muistipeli.Muistipeli.voikoKaantaa(peli, 7));
+        assertFalse(muistipeli.Operaatiot.voikoKaantaa(peli, 7));
         
     }
     
@@ -53,7 +53,7 @@ public class MuistipeliTest {
         peli.getLaatat().get(5).nayta();
         peli.getLaatat().get(8).setTunniste(2);
         peli.getLaatat().get(8).nayta();
-        assertTrue(muistipeli.Muistipeli.onkoPari(peli));
+        assertTrue(muistipeli.Operaatiot.onkoPari(peli));
     }
     
     @Test 
@@ -62,6 +62,6 @@ public class MuistipeliTest {
         peli.getLaatat().get(5).nayta();
         peli.getLaatat().get(8).setTunniste(2);
         peli.getLaatat().get(8).nayta();
-        assertFalse(muistipeli.Muistipeli.onkoPari(peli));
+        assertFalse(muistipeli.Operaatiot.onkoPari(peli));
     }
 }
