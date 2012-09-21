@@ -25,23 +25,9 @@ public class TekstiUi {
 //        peli.getLaatat().get(2).setTunniste(2);
         while (peli.getParit()
                 <= (peli.getLaattoja() / 2)) {
-            System.out.println("Anna 1.laatan paikka");
-            paikka1 = lukija.nextInt();
-            System.out.println("Anna 2.laatan paikka");
-            paikka2 = lukija.nextInt();
 
-            if (Operaatiot.voikoKaantaa(peli, paikka1)) {
-                peli.getLaatat().get(paikka1).nayta();
-                peli.lisaaKaannettyja();
-            } else {
-                System.out.println("Ei voi kääntää!");
-            }
-            if (Operaatiot.voikoKaantaa(peli, paikka2)) {
-                peli.getLaatat().get(paikka2).nayta();
-                peli.lisaaKaannettyja();
-            } else {
-                System.out.println("Ei voi kääntää!");
-            }
+            paikka1 = kaanna1(peli);
+            paikka2 = kaanna2(peli);
 
             if (Operaatiot.onkoPari(peli)) {
                 System.out.println("Löysit parin!");
@@ -54,5 +40,33 @@ public class TekstiUi {
                 peli.eiPari(paikka1, paikka2);
             }
         }
+    }
+
+    private static int kaanna2(Kentta peli) {
+        int paikka2;
+        System.out.println("Anna 2.laatan paikka");
+        paikka2 = lukija.nextInt();
+        if (Operaatiot.voikoKaantaa(peli, paikka2)) {
+            peli.getLaatat().get(paikka2).nayta();
+            peli.lisaaKaannettyja();
+        } else {
+            System.out.println("Ei voi kääntää!");
+            kaanna2(peli);
+        }
+        return paikka2;
+    }
+
+    private static int kaanna1(Kentta peli) {
+        int paikka1;
+        System.out.println("Anna 1.laatan paikka");
+        paikka1 = lukija.nextInt();
+        if (Operaatiot.voikoKaantaa(peli, paikka1)) {
+            peli.getLaatat().get(paikka1).nayta();
+            peli.lisaaKaannettyja();
+        } else {
+            System.out.println("Ei voi kääntää!");
+            kaanna1(peli);
+        }
+        return paikka1;
     }
 }
