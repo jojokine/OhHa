@@ -20,6 +20,11 @@ public class Gui extends JFrame {
     GridLayout kentanKoko;
 
     public Gui(int laattoja) {
+        
+        int paikka1;
+        int paikka2;
+        final muistipeli.Kentta peli;
+        peli = new muistipeli.Kentta(1);
 
         if (laattoja == 16) {
             kentanKoko = new GridLayout(4, 4);
@@ -37,7 +42,11 @@ public class Gui extends JFrame {
             laatat[i].addActionListener(
                     new ActionListener() {
                         public void actionPerformed(ActionEvent klikkaus) {
-                            System.out.println();
+                            System.out.println("koitetaan kääntää!");
+                            if(Operaatiot.voikoKaantaa(peli, i)){
+                                peli.getLaatat().get(i).nayta();
+                                System.out.println("käännetään!");
+                            }
                         }
                     });
             peliKentta.add(laatat[i]);
