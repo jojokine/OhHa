@@ -19,6 +19,7 @@ public class Gui extends JFrame {
     static JPanel peliKentta;
     GridLayout kentanKoko;
     int kaannettava;
+    ImageIcon pari1 = new ImageIcon("kuvat/pari1");
 
     public Gui(int laattoja) {
 
@@ -40,6 +41,8 @@ public class Gui extends JFrame {
         for (i = 0; i < laatat.length; i++) {
             laatat[i] = new JButton(Integer.toString(i + 1));
             laatat[i].setSize(80, 80);
+            
+            
             laatat[i].addActionListener(
                     new ActionListener() {
                         @Override
@@ -57,6 +60,8 @@ public class Gui extends JFrame {
                                 System.out.println("käännettiin!");
                                 if (Operaatiot.onkoPari(peli)) {
                                     System.out.println("löysit parin!");
+                                } else {
+                                    System.out.println("eivät olleet pari!");
                                 }
                             }
 

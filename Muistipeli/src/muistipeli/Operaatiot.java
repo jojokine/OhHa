@@ -43,11 +43,13 @@ public class Operaatiot {
         }
     }
 
-    private static void haeKaannettyPari(Kentta peli) {
+    public static void haeKaannettyPari(Kentta peli) {
         pari.clear();
         for (int i = 0; i < peli.getLaatat().size(); i++) {
             if (peli.getLaatat().get(i).getTila() == true) {
                 pari.add(peli.getLaatat().get(i));
+                
+                
             }
         }
     }
