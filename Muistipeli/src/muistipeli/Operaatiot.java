@@ -46,4 +46,11 @@ public class Operaatiot {
             }
         }
     }
+    
+    public static void kaannaLaatta(Kentta peli, int paikka){
+        if(voikoKaantaa(peli, paikka)){
+            
+        }
+    }
+    
 }
