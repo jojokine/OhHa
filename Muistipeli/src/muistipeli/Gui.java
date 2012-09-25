@@ -18,9 +18,10 @@ public class Gui extends JFrame {
     int i = 0;
     static JPanel peliKentta;
     GridLayout kentanKoko;
+    int kaannettava;
 
     public Gui(int laattoja) {
-        
+
         int paikka1;
         int paikka2;
         final muistipeli.Kentta peli;
@@ -34,25 +35,36 @@ public class Gui extends JFrame {
             kentanKoko = new GridLayout(6, 6);
         }
 
-        JButton[] laatat = new JButton[laattoja];
+        final JButton[] laatat = new JButton[laattoja];
         peliKentta = new JPanel(kentanKoko);
         for (i = 0; i < laatat.length; i++) {
             laatat[i] = new JButton(Integer.toString(i + 1));
             laatat[i].setSize(80, 80);
             laatat[i].addActionListener(
                     new ActionListener() {
-                        public void actionPerformed(ActionEvent klikkaus) {
-                            System.out.println("koitetaan kääntää!");
-                            if(Operaatiot.voikoKaantaa(peli, i)){
-                                peli.getLaatat().get(i).nayta();
-                                System.out.println("käännetään!");
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                            for (int i = 1; i < laatat.length; i++) {
+                                if (e.getSource() == laatat[i]) {
+                                    kaannettava = i;
+                                    break;
+                                }
                             }
+                            System.out.println("yritetään kääntää" + kaannettava);
+
+                            if (Operaatiot.kaannaLaatta(peli, kaannettava)) {
+                                System.out.println("käännettiin!");
+                                if (Operaatiot.onkoPari(peli)) {
+                                    System.out.println("löysit parin!");
+                                }
+                            }
+
                         }
                     });
             peliKentta.add(laatat[i]);
 
         }
-
     }
 
     public static void main(String args[]) {
