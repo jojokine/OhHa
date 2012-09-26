@@ -19,10 +19,12 @@ public class Gui extends JFrame {
     static JPanel peliKentta;
     GridLayout kentanKoko;
     int kaannettava;
-    static ImageIcon pari1 = new ImageIcon("kuvat/pari1");
 
+
+        
     public Gui(int vaikeus) {
-
+        
+        
         final muistipeli.Kentta peli;
         peli = new muistipeli.Kentta(vaikeus);
 
@@ -42,15 +44,14 @@ public class Gui extends JFrame {
         }
 
 
-
-
         final JToggleButton[] laatat = new JToggleButton[peli.getLaattoja()];
 
         peliKentta = new JPanel(kentanKoko);
         for (i = 0; i < laatat.length; i++) {
-            laatat[i] = new JToggleButton(pari1);
+            laatat[i] = new JToggleButton();
+            laatat[i].setIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pohja.jpg"))));
             // laatat[i] = new JButton(Integer.toString(i + 1));
-            laatat[i].setSize(100, 100);
+            laatat[i].setSize(50, 50);
             laatat[i].addActionListener(
                     new ActionListener() {
                         @Override
@@ -63,16 +64,15 @@ public class Gui extends JFrame {
                                 }
                             }
                             System.out.println("yritetään kääntää" + ((kaannettava + 1)));
-
-
                             if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
+                                
                                 System.out.println("käännettiin!");
                                 if (peli.getKaannetyt() == 2) {
                                     if (Operaatiot.onkoPari(peli)) {
                                         System.out.println("löysit parin!");
-
                                     } else {
                                         System.out.println("eivät olleet pari!");
+                                        //laatat[i].set
 
                                     }
                                 }
@@ -84,10 +84,28 @@ public class Gui extends JFrame {
             peliKentta.add(laatat[i]);
 
         }
+        
+        for (int j = 0; j < 5; j++) {
+            if (j%2==0){
+                laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari"+j+".jpg"))));
+                laatat[(j+1)].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari"+j+".jpg"))));
+            }
+                     
+        }
+       // laatat[0].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari1.jpg"))));
+       // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
+        
+        
     }
+    
+    
+    private void paivita(){
+        
+            
+        }
 
     public static void main(String args[]) {
-        Gui ruudukko = new Gui(1);
+        Gui ruudukko = new Gui(0);
         ruudukko.setTitle("Muistipeli");
         ruudukko.setPreferredSize(new Dimension(800, 800));
         ruudukko.add(peliKentta);
