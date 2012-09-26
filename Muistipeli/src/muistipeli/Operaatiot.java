@@ -7,34 +7,42 @@ package muistipeli;
 import java.util.ArrayList;
 
 /**
- * Luokassa suoritetaan pelikentän tutkimiseen ja muokkaamiseen liittyvät operaatiot
+ * Luokassa suoritetaan pelikentän tutkimiseen ja muokkaamiseen liittyvät
+ * operaatiot
+ *
  * @author jojokine
  */
 public class Operaatiot {
 
     static ArrayList<Laatta> pari;
-    static int paikka1;
-    static int paikka2;
+//    static int paikka1;
+//    static int paikka2;
 
     public static boolean onkoPari(Kentta peli) {
         pari = new ArrayList();
         haeKaannettyPari(peli);
-        if (pari.size() < 2){
+        if (pari.size() < 2) {
+            peli.nollaaKaannetyt();
             return false;
         }
         if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
+            peli.nollaaKaannetyt();
             return false;
         } else if (pari.get(0).getTunniste() % 2 == 0 && pari.get(1).getTunniste() % 2 == 0) {
+            peli.nollaaKaannetyt();
             return false;
         } else if (pari.get(0).getTunniste() != (pari.get(1).getTunniste() + 1) && pari.get(0).getTunniste() != (pari.get(1).getTunniste() - 1)) {
+            peli.nollaaKaannetyt();
             return false;
         } else {
+            peli.nollaaKaannetyt();
             return true;
         }
     }
 
     /**
      * Metodi tutkii voidaanko kentällä oleva laatta kääntää
+     *
      * @param peli kenttä, jota tutkitaan
      * @param paikka laatan sijainti kentällä
      * @return true tai false sen mukaan, voidaanko laatta kääntää.
@@ -48,26 +56,30 @@ public class Operaatiot {
             return false;
         }
     }
-/**
- * Metodi hakee kentältä käännettynä olevan laattaparin ja lisää ne listaan pari
- * @param peli kenttä, jota tutkitaan
- */
+
+    /**
+     * Metodi hakee kentältä käännettynä olevan laattaparin ja lisää ne listaan
+     * pari
+     *
+     * @param peli kenttä, jota tutkitaan
+     */
     public static void haeKaannettyPari(Kentta peli) {
         pari.clear();
         for (int i = 0; i < peli.getLaatat().size(); i++) {
             if (peli.getLaatat().get(i).getTila() == true) {
                 pari.add(peli.getLaatat().get(i));
-                
-                
+
+
             }
         }
     }
 
     /**
      * Metodi kääntää laatan kentältä
+     *
      * @param peli kenttä, jolta laatta halutaan kääntää
      * @param paikka käännettävän laatan sijainti
-     * @return 
+     * @return
      */
     public static boolean kaannaLaatta(Kentta peli, int paikka) {
 
@@ -80,25 +92,27 @@ public class Operaatiot {
     }
 
     private static boolean kaanna2(Kentta peli, int paikka2) {
-        System.out.println("Anna 2.laatan paikka");
+        //System.out.println("Anna 2.laatan paikka");
         if (Operaatiot.voikoKaantaa(peli, paikka2)) {
             peli.getLaatat().get(paikka2).nayta();
             peli.lisaaKaannettyja();
             return true;
         } else {
             System.out.println("Ei voi kääntää!");
+            peli.nollaaKaannetyt();
             return false;
         }
     }
 
     private static boolean kaanna1(Kentta peli, int paikka1) {
-        System.out.println("Anna 1.laatan paikka");
+        //System.out.println("Anna 1.laatan paikka");
         if (Operaatiot.voikoKaantaa(peli, paikka1)) {
             peli.getLaatat().get(paikka1).nayta();
             peli.lisaaKaannettyja();
             return true;
         } else {
             System.out.println("Ei voi kääntää!");
+            peli.nollaaKaannetyt();
             return false;
 
         }

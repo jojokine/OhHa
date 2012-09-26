@@ -21,49 +21,64 @@ public class Gui extends JFrame {
     int kaannettava;
     ImageIcon pari1 = new ImageIcon("kuvat/pari1");
 
-    public Gui(int laattoja) {
+    public Gui(int vaikeus) {
 
         int paikka1;
         int paikka2;
         final muistipeli.Kentta peli;
-        peli = new muistipeli.Kentta(1);
+        peli = new muistipeli.Kentta(vaikeus);
 
-        if (laattoja == 16) {
+        if (peli.getLaattoja() == 16) {
             kentanKoko = new GridLayout(4, 4);
-        } else if (laattoja == 24) {
+        } else if (peli.getLaattoja() == 24) {
             kentanKoko = new GridLayout(6, 4);
-        } else {
+        } else if (peli.getLaattoja() == 36) {
             kentanKoko = new GridLayout(6, 6);
         }
 
-        final JButton[] laatat = new JButton[laattoja];
+        //peli.getLaatat().get(1).setTunniste(1);
+        //peli.getLaatat().get(2).setTunniste(2);
+
+        for (int j = 0; j < peli.getLaatat().size(); j++) {
+            System.out.println(j +" on "+ peli.getLaatat().get(j).getTunniste());
+        }
+
+
+
+
+        final JButton[] laatat = new JButton[peli.getLaattoja()];
         peliKentta = new JPanel(kentanKoko);
         for (i = 0; i < laatat.length; i++) {
             laatat[i] = new JButton(Integer.toString(i + 1));
             laatat[i].setSize(80, 80);
-            
-            
+            laatat[i].setPressedIcon(pari1);
             laatat[i].addActionListener(
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            kaannettava = 0;
 
                             for (int i = 1; i < laatat.length; i++) {
                                 if (e.getSource() == laatat[i]) {
                                     kaannettava = i;
-                                    break;
                                 }
                             }
-                            System.out.println("yritetään kääntää" + kaannettava);
+                            System.out.println("yritetään kääntää" + (kaannettava + 1));
 
-                            if (Operaatiot.kaannaLaatta(peli, kaannettava)) {
+
+                            if (Operaatiot.kaannaLaatta(peli, (kaannettava + 1))) {
                                 System.out.println("käännettiin!");
-                                if (Operaatiot.onkoPari(peli)) {
-                                    System.out.println("löysit parin!");
-                                } else {
-                                    System.out.println("eivät olleet pari!");
+                                if (peli.getKaannetyt() == 2) {
+                                    if (Operaatiot.onkoPari(peli)) {
+                                        System.out.println("löysit parin!");
+
+                                    } else {
+                                        System.out.println("eivät olleet pari!");
+
+                                    }
                                 }
                             }
+
 
                         }
                     });
@@ -73,11 +88,12 @@ public class Gui extends JFrame {
     }
 
     public static void main(String args[]) {
-        Gui ruudukko = new Gui(16);
+        Gui ruudukko = new Gui(1);
         ruudukko.setTitle("Muistipeli");
         ruudukko.add(peliKentta);
         ruudukko.pack();
         ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ruudukko.setVisible(true);
+
     }
 }

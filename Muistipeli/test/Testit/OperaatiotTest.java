@@ -64,4 +64,8 @@ public class OperaatiotTest {
         peli.getLaatat().get(8).nayta();
         assertFalse(muistipeli.Operaatiot.onkoPari(peli));
     }
-}
+    
+          
+    }
+    
+
