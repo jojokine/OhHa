@@ -19,12 +19,10 @@ public class Gui extends JFrame {
     static JPanel peliKentta;
     GridLayout kentanKoko;
     int kaannettava;
-    ImageIcon pari1 = new ImageIcon("kuvat/pari1");
+    static ImageIcon pari1 = new ImageIcon("kuvat/pari1");
 
     public Gui(int vaikeus) {
 
-        int paikka1;
-        int paikka2;
         final muistipeli.Kentta peli;
         peli = new muistipeli.Kentta(vaikeus);
 
@@ -40,18 +38,19 @@ public class Gui extends JFrame {
         //peli.getLaatat().get(2).setTunniste(2);
 
         for (int j = 0; j < peli.getLaatat().size(); j++) {
-            System.out.println(j +" on "+ peli.getLaatat().get(j).getTunniste());
+            System.out.println((j + 1) + " on " + peli.getLaatat().get(j).getTunniste());
         }
 
 
 
 
-        final JButton[] laatat = new JButton[peli.getLaattoja()];
+        final JToggleButton[] laatat = new JToggleButton[peli.getLaattoja()];
+
         peliKentta = new JPanel(kentanKoko);
         for (i = 0; i < laatat.length; i++) {
-            laatat[i] = new JButton(Integer.toString(i + 1));
-            laatat[i].setSize(80, 80);
-            laatat[i].setPressedIcon(pari1);
+            laatat[i] = new JToggleButton(pari1);
+            // laatat[i] = new JButton(Integer.toString(i + 1));
+            laatat[i].setSize(100, 100);
             laatat[i].addActionListener(
                     new ActionListener() {
                         @Override
@@ -63,10 +62,10 @@ public class Gui extends JFrame {
                                     kaannettava = i;
                                 }
                             }
-                            System.out.println("yritetään kääntää" + (kaannettava + 1));
+                            System.out.println("yritetään kääntää" + ((kaannettava + 1)));
 
 
-                            if (Operaatiot.kaannaLaatta(peli, (kaannettava + 1))) {
+                            if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
                                 System.out.println("käännettiin!");
                                 if (peli.getKaannetyt() == 2) {
                                     if (Operaatiot.onkoPari(peli)) {
@@ -90,6 +89,7 @@ public class Gui extends JFrame {
     public static void main(String args[]) {
         Gui ruudukko = new Gui(1);
         ruudukko.setTitle("Muistipeli");
+        ruudukko.setPreferredSize(new Dimension(800, 800));
         ruudukko.add(peliKentta);
         ruudukko.pack();
         ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
