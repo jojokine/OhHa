@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- *
+ * Luokka tallentaa Laatta-olioita arraylistiin vakeustason perusteella
+ * ja pitää ylhäällä kentään tilaa koskevia tietoja
  * @author jojokine
  */
 public class Kentta {

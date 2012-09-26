@@ -7,7 +7,7 @@ package muistipeli;
 import java.util.ArrayList;
 
 /**
- *
+ * Luokassa suoritetaan pelikentän tutkimiseen ja muokkaamiseen liittyvät operaatiot
  * @author jojokine
  */
 public class Operaatiot {
@@ -33,6 +33,12 @@ public class Operaatiot {
         }
     }
 
+    /**
+     * Metodi tutkii voidaanko kentällä oleva laatta kääntää
+     * @param peli kenttä, jota tutkitaan
+     * @param paikka laatan sijainti kentällä
+     * @return true tai false sen mukaan, voidaanko laatta kääntää.
+     */
     public static boolean voikoKaantaa(Kentta peli, int paikka) {
         if (peli.getKaannetyt() == 0) {
             return true;
@@ -42,7 +48,10 @@ public class Operaatiot {
             return false;
         }
     }
-
+/**
+ * Metodi hakee kentältä käännettynä olevan laattaparin ja lisää ne listaan pari
+ * @param peli kenttä, jota tutkitaan
+ */
     public static void haeKaannettyPari(Kentta peli) {
         pari.clear();
         for (int i = 0; i < peli.getLaatat().size(); i++) {
@@ -54,6 +63,12 @@ public class Operaatiot {
         }
     }
 
+    /**
+     * Metodi kääntää laatan kentältä
+     * @param peli kenttä, jolta laatta halutaan kääntää
+     * @param paikka käännettävän laatan sijainti
+     * @return 
+     */
     public static boolean kaannaLaatta(Kentta peli, int paikka) {
 
         if (peli.getKaannetyt() == 0) {

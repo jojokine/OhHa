@@ -5,7 +5,7 @@
 package muistipeli;
 
 /**
- *
+ * Luokasta luodaan pelikentän laatta-oliot jotka tallennetaan Kentta-luokan arraylistiin
  * @author jojokine
  */
 public class Laatta {
