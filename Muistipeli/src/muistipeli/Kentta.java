@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Luokka tallentaa Laatta-olioita arraylistiin vakeustason perusteella
- * ja pitää ylhäällä kentään tilaa koskevia tietoja
+ * Luokka tallentaa Laatta-olioita arraylistiin vakeustason perusteella ja pitää
+ * ylhäällä kentään tilaa koskevia tietoja
+ *
  * @author jojokine
  */
 public class Kentta {
@@ -59,7 +60,7 @@ public class Kentta {
     }
 
     public void loytyi() {
-        parit++;    
+        parit++;
     }
 
     public int getParit() {
@@ -78,10 +79,19 @@ public class Kentta {
         kaannettyna = 0;
     }
 
+    public int haeLaatanIndeksi(int tunniste) {
+        for (int j = 0; j < getLaatat().size(); j++) {
+            if (getLaatat().get(j).getTunniste() == tunniste) {
+                return j;
+            }
+        }
+        return 0;
+    }
+
     public void eiPari(int laatta1, int laatta2) {
         nollaaKaannetyt();
         pelinLaatat.get(laatta1).piilota();
-        pelinLaatat.get(laatta2).piilota();                
+        pelinLaatat.get(laatta2).piilota();
         kaannot++;
     }
 }

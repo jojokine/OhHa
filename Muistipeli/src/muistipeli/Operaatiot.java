@@ -20,19 +20,21 @@ public class Operaatiot {
 
     public static boolean onkoPari(Kentta peli) {
         pari = new ArrayList();
+        pari.clear();
         haeKaannettyPari(peli);
+        System.out.println(pari.toString());
         if (pari.size() < 2) {
-            peli.nollaaKaannetyt();
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
             return false;
         }
         if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
-            peli.nollaaKaannetyt();
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
             return false;
         } else if (pari.get(0).getTunniste() % 2 == 0 && pari.get(1).getTunniste() % 2 == 0) {
-            peli.nollaaKaannetyt();
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
             return false;
         } else if (pari.get(0).getTunniste() != (pari.get(1).getTunniste() + 1) && pari.get(0).getTunniste() != (pari.get(1).getTunniste() - 1)) {
-            peli.nollaaKaannetyt();
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
             return false;
         } else {
             peli.nollaaKaannetyt();

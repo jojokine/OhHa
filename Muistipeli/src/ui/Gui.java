@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package muistipeli;
+package ui;
 
 import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import muistipeli.Operaatiot;
 
 /**
  *
@@ -20,11 +21,9 @@ public class Gui extends JFrame {
     GridLayout kentanKoko;
     int kaannettava;
 
-
-        
     public Gui(int vaikeus) {
-        
-        
+
+
         final muistipeli.Kentta peli;
         peli = new muistipeli.Kentta(vaikeus);
 
@@ -65,44 +64,38 @@ public class Gui extends JFrame {
                             }
                             System.out.println("yritetään kääntää" + ((kaannettava + 1)));
                             if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
-                                
+
                                 System.out.println("käännettiin!");
                                 if (peli.getKaannetyt() == 2) {
                                     if (Operaatiot.onkoPari(peli)) {
                                         System.out.println("löysit parin!");
                                     } else {
                                         System.out.println("eivät olleet pari!");
-                                        
 
                                     }
                                 }
                             }
-
-
                         }
                     });
             peliKentta.add(laatat[i]);
 
         }
-        
-        for (int j = 0; j < 5; j++) {
-            if (j%2==0){
-                laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari"+j+".jpg"))));
-                laatat[(j+1)].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari"+j+".jpg"))));
+
+        for (int j = 0; j < peli.getLaatat().size(); j++) {
+            if (peli.getLaatat().get(j).getTunniste() % 2 == 0) {
+                laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
+            } else if (peli.getLaatat().get(j).getTunniste() % 2 != 0) {
+                laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + ((peli.getLaatat().get(j).getTunniste()) - 1) + ".png"))));
             }
-                     
         }
-       // laatat[0].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari1.jpg"))));
-       // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
-        
-        
+        // laatat[0].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari1.jpg"))));
+        // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
+
+
     }
-    
-    
-    private void paivita(){
-        
-            
-        }
+
+    private void paivita() {
+    }
 
     public static void main(String args[]) {
         Gui ruudukko = new Gui(0);

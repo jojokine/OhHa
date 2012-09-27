@@ -41,4 +41,10 @@ public class KenttaTest {
         // laattoja on lisätty vaikeustason 1 verran tauluun, joten niitä pitäisi olla 24
         assertEquals(24, peli.getLaatat().size(), vertailuTarkkuus);
     }
+    
+    @Test
+    public void haeLaatanIndeksiPalauttaaOikein(){
+        peli.getLaatat().get(2).setTunniste(3);
+        assertEquals(2, peli.haeLaatanIndeksi(3), vertailuTarkkuus); 
+    }
 }

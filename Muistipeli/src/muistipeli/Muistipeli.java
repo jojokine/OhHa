@@ -4,6 +4,7 @@
  */
 package muistipeli;
 
+import ui.TekstiUi;
 import java.util.ArrayList;
 import java.util.Scanner;
 

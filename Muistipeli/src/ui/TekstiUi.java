@@ -2,9 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package muistipeli;
+package ui;
 
 import java.util.Scanner;
+import muistipeli.Kentta;
+import muistipeli.Operaatiot;
 
 /**
  *
