@@ -19,22 +19,20 @@ public class Operaatiot {
 //    static int paikka2;
 
     public static boolean onkoPari(Kentta peli) {
-        pari = new ArrayList();
-        pari.clear();
-        haeKaannettyPari(peli);
-        System.out.println(pari.toString());
+        pari = haeKaannettyPari(peli);
+        System.out.println("onkopari"+pari.toString());
         if (pari.size() < 2) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
             return false;
         }
-        if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
+        else if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
             return false;
         } else if (pari.get(0).getTunniste() % 2 == 0 && pari.get(1).getTunniste() % 2 == 0) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
             return false;
         } else if (pari.get(0).getTunniste() != (pari.get(1).getTunniste() + 1) && pari.get(0).getTunniste() != (pari.get(1).getTunniste() - 1)) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), pari.get(1).getTunniste());
+            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
             return false;
         } else {
             peli.nollaaKaannetyt();
@@ -65,15 +63,15 @@ public class Operaatiot {
      *
      * @param peli kenttä, jota tutkitaan
      */
-    public static void haeKaannettyPari(Kentta peli) {
+    public static ArrayList<Laatta> haeKaannettyPari(Kentta peli) {
+        pari = new ArrayList();
         pari.clear();
         for (int i = 0; i < peli.getLaatat().size(); i++) {
             if (peli.getLaatat().get(i).getTila() == true) {
                 pari.add(peli.getLaatat().get(i));
-
-
             }
         }
+        return pari;
     }
 
     /**

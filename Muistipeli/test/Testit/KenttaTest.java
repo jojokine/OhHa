@@ -47,4 +47,6 @@ public class KenttaTest {
         peli.getLaatat().get(2).setTunniste(3);
         assertEquals(2, peli.haeLaatanIndeksi(3), vertailuTarkkuus); 
     }
+    
+    
 }

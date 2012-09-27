@@ -4,6 +4,8 @@
  */
 package Testit;
 
+import java.util.ArrayList;
+import muistipeli.Laatta;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,6 +20,7 @@ import static org.junit.Assert.*;
 public class OperaatiotTest {
 
     muistipeli.Kentta peli;
+    double vertailuTarkkuus = 0.0001;
 
     @Before
     public void setUp() {
@@ -75,5 +78,15 @@ public class OperaatiotTest {
     public void kaannaLaattaEiKaannaJoKaannettya() {
         muistipeli.Operaatiot.kaannaLaatta(peli, 2);
         assertFalse(muistipeli.Operaatiot.kaannaLaatta(peli, 2));
+    }
+    
+    @Test
+    public void haeKaannettyPariPalauttaaOikeanParin(){
+        peli.getLaatat().get(1).nayta();
+        peli.getLaatat().get(2).nayta();
+        ArrayList<Laatta>pari = new ArrayList();
+        pari = muistipeli.Operaatiot.haeKaannettyPari(peli);
+        assertEquals(peli.getLaatat().get(1).getTunniste(), pari.get(0).getTunniste(), vertailuTarkkuus);
+        assertEquals(peli.getLaatat().get(2).getTunniste(), pari.get(1).getTunniste(), vertailuTarkkuus);
     }
 }

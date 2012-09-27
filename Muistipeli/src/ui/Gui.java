@@ -8,6 +8,8 @@ import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import muistipeli.Laatta;
 import muistipeli.Operaatiot;
 
 /**
@@ -20,8 +22,11 @@ public class Gui extends JFrame {
     static JPanel peliKentta;
     GridLayout kentanKoko;
     int kaannettava;
+    static ArrayList<Laatta> kaannetyt;
 
     public Gui(int vaikeus) {
+        
+        kaannetyt = new ArrayList();
 
 
         final muistipeli.Kentta peli;
@@ -62,15 +67,23 @@ public class Gui extends JFrame {
                                     kaannettava = i;
                                 }
                             }
-                            System.out.println("yritetään kääntää" + ((kaannettava + 1)));
+                            System.out.println("yritetään kääntää" + ((kaannettava)));
                             if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
+                                kaannetyt.add(peli.getLaatat().get((kaannettava)));
+                                System.out.println("guinkaannetyt"+kaannetyt.toString());
 
                                 System.out.println("käännettiin!");
                                 if (peli.getKaannetyt() == 2) {
                                     if (Operaatiot.onkoPari(peli)) {
                                         System.out.println("löysit parin!");
+                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(0).getTunniste())].setEnabled(false);
+                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(1).getTunniste())].setEnabled(false);
+                                        kaannetyt.clear();
                                     } else {
                                         System.out.println("eivät olleet pari!");
+                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(0).getTunniste())].setSelected(false);
+                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(1).getTunniste())].setSelected(false);
+                                        kaannetyt.clear();                                                                               
 
                                     }
                                 }
