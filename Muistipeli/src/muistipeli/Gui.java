@@ -72,7 +72,7 @@ public class Gui extends JFrame {
                                         System.out.println("löysit parin!");
                                     } else {
                                         System.out.println("eivät olleet pari!");
-                                        //laatat[i].set
+                                        
 
                                     }
                                 }
