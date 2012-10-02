@@ -4,7 +4,6 @@
  */
 package ui;
 
-import java.awt.GridLayout;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -25,7 +24,7 @@ public class Gui extends JFrame {
     static ArrayList<Laatta> kaannetyt;
 
     public Gui(int vaikeus) {
-        
+
         kaannetyt = new ArrayList();
 
 
@@ -44,7 +43,7 @@ public class Gui extends JFrame {
         //peli.getLaatat().get(2).setTunniste(2);
 
         for (int j = 0; j < peli.getLaatat().size(); j++) {
-            System.out.println((j + 1) + " on " + peli.getLaatat().get(j).getTunniste());
+            // System.out.println((j + 1) + " on " + peli.getLaatat().get(j).getTunniste());
         }
 
 
@@ -67,34 +66,45 @@ public class Gui extends JFrame {
                                     kaannettava = i;
                                 }
                             }
-                            System.out.println("yritetään kääntää" + ((kaannettava)));
+                            // System.out.println("yritetään kääntää" + ((kaannettava)));
                             if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
                                 kaannetyt.add(peli.getLaatat().get((kaannettava)));
-                                System.out.println("guinkaannetyt"+kaannetyt.toString());
+                                // System.out.println("guinkaannetyt" + kaannetyt.toString());
 
-                                System.out.println("käännettiin!");
+                                // System.out.println("käännettiin!");
                                 if (peli.getKaannetyt() == 2) {
                                     if (Operaatiot.onkoPari(peli)) {
-                                        System.out.println("löysit parin!");
-                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(0).getTunniste())].setEnabled(false);
-                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(1).getTunniste())].setEnabled(false);
-                                        kaannetyt.clear();
+                                        // System.out.println("löysit parin!");
+                                        for (int i = 0; i < peli.getLaatat().size(); i++) {
+                                            if (peli.getLaatat().get(i).onkoLoydetty()) {
+                                                laatat[i].setEnabled(false);
+                                                kaannetyt.clear();
+                                            }
+                                        }
                                     } else {
-                                        System.out.println("eivät olleet pari!");
-                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(0).getTunniste())].setSelected(false);
-                                        laatat[peli.haeLaatanIndeksi(kaannetyt.get(1).getTunniste())].setSelected(false);
-                                        kaannetyt.clear();                                                                               
-
+                                        // System.out.println("eivät olleet pari!");
+                                        for (int j = 0; j < peli.getLaatat().size(); j++) {
+                                            if (laatat[j].isEnabled()) {
+                                                laatat[j].setSelected(false);
+                                            }
+                                        }
+                                        kaannetyt.clear();
+                                        if (peli.getParit() == (peli.getLaattoja()/2)){
+                                            
+                                        }
+                                        
                                     }
                                 }
                             }
                         }
                     });
+
             peliKentta.add(laatat[i]);
 
         }
-
-        for (int j = 0; j < peli.getLaatat().size(); j++) {
+        for (int j = 0;
+                j < peli.getLaatat()
+                .size(); j++) {
             if (peli.getLaatat().get(j).getTunniste() % 2 == 0) {
                 laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
             } else if (peli.getLaatat().get(j).getTunniste() % 2 != 0) {
@@ -103,15 +113,10 @@ public class Gui extends JFrame {
         }
         // laatat[0].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari1.jpg"))));
         // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
-
-
     }
 
-    private void paivita() {
-    }
-
-    public static void main(String args[]) {
-        Gui ruudukko = new Gui(0);
+    public static void uusiPeli(int vaikeus) {
+        Gui ruudukko = new Gui(vaikeus);
         ruudukko.setTitle("Muistipeli");
         ruudukko.setPreferredSize(new Dimension(800, 800));
         ruudukko.add(peliKentta);

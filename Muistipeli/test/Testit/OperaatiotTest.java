@@ -6,6 +6,7 @@ package Testit;
 
 import java.util.ArrayList;
 import muistipeli.Laatta;
+import muistipeli.Operaatiot;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -52,7 +53,7 @@ public class OperaatiotTest {
 
     @Test
     public void onkoPariVastaaOikeinJosPari() {
-        peli.getLaatat().get(5).setTunniste(1);
+        peli.getLaatat().get(5).setTunniste(2);
         peli.getLaatat().get(5).nayta();
         peli.getLaatat().get(8).setTunniste(2);
         peli.getLaatat().get(8).nayta();
@@ -69,6 +70,61 @@ public class OperaatiotTest {
     }
 
     @Test
+    public void onkoPariMuokkaaLoydetyksiOikeinJosPari() {
+        peli.getLaatat().get(5).setTunniste(2);
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get(8).setTunniste(2);
+        peli.getLaatat().get(8).nayta();
+        Operaatiot.onkoPari(peli);
+        assertTrue(peli.getLaatat().get(5).onkoLoydetty());
+        assertTrue(peli.getLaatat().get(8).onkoLoydetty());
+    }
+
+    @Test
+    public void onkoPariSulkeeKaannotJosPari() {
+        peli.getLaatat().get(5).setTunniste(2);
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get(8).setTunniste(2);
+        peli.getLaatat().get(8).nayta();
+        Operaatiot.onkoPari(peli);
+        assertFalse(peli.getLaatat().get(5).getTila());
+        assertFalse(peli.getLaatat().get(8).getTila());
+    }
+
+    @Test
+    public void onkoPariSulkeeKaannotJosEiPari() {
+        peli.getLaatat().get(5).setTunniste(3);
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get(8).setTunniste(9);
+        peli.getLaatat().get(8).nayta();
+        Operaatiot.onkoPari(peli);
+        assertFalse(peli.getLaatat().get(5).getTila());
+        assertFalse(peli.getLaatat().get(8).getTila());
+    }
+    
+    @Test
+    public void onkoPariNollaakaannetytJaLisaaLoytyneitaJosPari(){
+        peli.getLaatat().get(5).setTunniste(2);
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get(8).setTunniste(2);
+        peli.getLaatat().get(8).nayta();
+        Operaatiot.onkoPari(peli);
+        assertEquals(0, peli.getKaannetyt(), vertailuTarkkuus);
+        assertEquals(1, peli.getParit(), vertailuTarkkuus);
+    }
+    
+    @Test
+    public void onkoPariNollaakaannetytJosEiPari(){
+        peli.getLaatat().get(5).setTunniste(2);
+        peli.getLaatat().get(5).nayta();
+        peli.getLaatat().get(8).setTunniste(5);
+        peli.getLaatat().get(8).nayta();
+        Operaatiot.onkoPari(peli);
+        assertEquals(0, peli.getKaannetyt(), vertailuTarkkuus);
+    }
+    
+
+    @Test
     public void kaannaLaattaKaantaaOikein() {
         muistipeli.Operaatiot.kaannaLaatta(peli, 2);
         assertTrue(peli.getLaatat().get(2).getTila());
@@ -79,12 +135,12 @@ public class OperaatiotTest {
         muistipeli.Operaatiot.kaannaLaatta(peli, 2);
         assertFalse(muistipeli.Operaatiot.kaannaLaatta(peli, 2));
     }
-    
+
     @Test
-    public void haeKaannettyPariPalauttaaOikeanParin(){
+    public void haeKaannettyPariPalauttaaOikeanParin() {
         peli.getLaatat().get(1).nayta();
         peli.getLaatat().get(2).nayta();
-        ArrayList<Laatta>pari = new ArrayList();
+        ArrayList<Laatta> pari = new ArrayList();
         pari = muistipeli.Operaatiot.haeKaannettyPari(peli);
         assertEquals(peli.getLaatat().get(1).getTunniste(), pari.get(0).getTunniste(), vertailuTarkkuus);
         assertEquals(peli.getLaatat().get(2).getTunniste(), pari.get(1).getTunniste(), vertailuTarkkuus);

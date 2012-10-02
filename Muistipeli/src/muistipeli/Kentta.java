@@ -37,7 +37,8 @@ public class Kentta {
         } else {
             laattoja = 36;
         }
-        for (int i = 0; i < laattoja; i++) {
+        for (int i = 0; i < laattoja; i = i+2) {
+            pelinLaatat.add(new Laatta(i));
             pelinLaatat.add(new Laatta(i));
         }
         Collections.shuffle(pelinLaatat);
@@ -79,14 +80,14 @@ public class Kentta {
         kaannettyna = 0;
     }
 
-    public int haeLaatanIndeksi(int tunniste) {
-        for (int j = 0; j < getLaatat().size(); j++) {
-            if (getLaatat().get(j).getTunniste() == tunniste) {
-                return j;
-            }
-        }
-        return 0;
-    }
+//    public int[][] haeLaatttojenIndeksit(int tunniste) {
+//        int[][] indeksit;
+//        for (int j = 0; j < getLaatat().size(); j++) {
+//            if (getLaatat().get(j).getTunniste() == tunniste) {
+//                           }
+//        }
+//        return 0;
+//    }
 
     public void eiPari(int laatta1, int laatta2) {
         nollaaKaannetyt();

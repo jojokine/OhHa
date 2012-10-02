@@ -26,14 +26,11 @@ public class KenttaTest {
     }
 
     @Test
-    public void laatatKaantyyJaNollaaKaannetytNollaa() {
+    public void laatatKaantyy() {
         peli.lisaaKaannettyja();
         peli.lisaaKaannettyja();
         // käännetään kaksi laattaa, joten käännettynä pitäisi olla kaksi laattaa
         assertEquals(2, peli.getKaannetyt(), vertailuTarkkuus);
-        peli.nollaaKaannetyt();
-        // nollataan käännetyt, joten käänettynä pitäisi olla nolla
-        assertEquals(0, peli.getKaannetyt(), vertailuTarkkuus);
     }
 
     @Test
@@ -41,12 +38,18 @@ public class KenttaTest {
         // laattoja on lisätty vaikeustason 1 verran tauluun, joten niitä pitäisi olla 24
         assertEquals(24, peli.getLaatat().size(), vertailuTarkkuus);
     }
-    
+
     @Test
-    public void haeLaatanIndeksiPalauttaaOikein(){
-        peli.getLaatat().get(2).setTunniste(3);
-        assertEquals(2, peli.haeLaatanIndeksi(3), vertailuTarkkuus); 
+    public void laatatSekoittuvat() {
+        assertFalse(5 == peli.getLaatat().get(5).getTunniste());
     }
-    
-    
+
+    @Test
+    public void NollaaKaannetytNollaa() {
+        peli.lisaaKaannettyja();
+        peli.lisaaKaannettyja();
+        peli.nollaaKaannetyt();
+        // nollataan käännetyt, joten käänettynä pitäisi olla nolla
+        assertEquals(0, peli.getKaannetyt(), vertailuTarkkuus);
+    }
 }

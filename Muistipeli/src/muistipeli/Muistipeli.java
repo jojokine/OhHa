@@ -7,6 +7,7 @@ package muistipeli;
 import ui.TekstiUi;
 import java.util.ArrayList;
 import java.util.Scanner;
+import ui.Gui;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Muistipeli {
 
     public static void main(String[] args) {
 
-        TekstiUi.Tekstipeli();
+        
 
     }
 }

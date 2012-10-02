@@ -14,30 +14,41 @@ import java.util.ArrayList;
  */
 public class Operaatiot {
 
-    static ArrayList<Laatta> pari;
+    private static ArrayList<Laatta> pari;
 //    static int paikka1;
 //    static int paikka2;
 
+    /**
+     * Metodi tutki kentällä käännettynä olevaa laattaparia ja palauttaa true
+     * tai false sen mukaan, olivatko ne pari.
+     *
+     * @param peli
+     * @return true/false sen mukaan, oliko kyseessä pari vai ei.
+     */
     public static boolean onkoPari(Kentta peli) {
         pari = haeKaannettyPari(peli);
-        System.out.println("onkopari"+pari.toString());
-        if (pari.size() < 2) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
-            return false;
-        }
-        else if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
-            return false;
-        } else if (pari.get(0).getTunniste() % 2 == 0 && pari.get(1).getTunniste() % 2 == 0) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
-            return false;
-        } else if (pari.get(0).getTunniste() != (pari.get(1).getTunniste() + 1) && pari.get(0).getTunniste() != (pari.get(1).getTunniste() - 1)) {
-            peli.eiPari(peli.haeLaatanIndeksi(pari.get(0).getTunniste()), peli.haeLaatanIndeksi(pari.get(1).getTunniste()));
-            return false;
+        // System.out.println("onkopari" + pari.toString());
+        if (pari.get(0).getTunniste() == pari.get(1).getTunniste()) {
+            return oliPari(peli);
         } else {
-            peli.nollaaKaannetyt();
-            return true;
+            eiOllutPari(peli);
+            return false;
         }
+//        if (pari.size() < 2) {
+//            eiOllutPari(peli);
+//            return false;
+//        } else if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
+//            eiOllutPari(peli);
+//            return false;
+//        } else if (pari.get(0).getTunniste() % 2 == 0 && pari.get(1).getTunniste() % 2 == 0) {
+//            eiOllutPari(peli);
+//            return false;
+//        } else if (pari.get(0).getTunniste() != (pari.get(1).getTunniste() + 1) && pari.get(0).getTunniste() != (pari.get(1).getTunniste() - 1)) {
+//            eiOllutPari(peli);
+//            return false;
+//        } else {
+//            return oliPari(peli);
+//        }
     }
 
     /**
@@ -82,39 +93,52 @@ public class Operaatiot {
      * @return
      */
     public static boolean kaannaLaatta(Kentta peli, int paikka) {
-
-        if (peli.getKaannetyt() == 0) {
-            return kaanna1(peli, paikka);
-        } else {
-            return kaanna2(peli, paikka);
-        }
-
-    }
-
-    private static boolean kaanna2(Kentta peli, int paikka2) {
-        //System.out.println("Anna 2.laatan paikka");
-        if (Operaatiot.voikoKaantaa(peli, paikka2)) {
-            peli.getLaatat().get(paikka2).nayta();
+        if (Operaatiot.voikoKaantaa(peli, paikka)) {
+            peli.getLaatat().get(paikka).nayta();
             peli.lisaaKaannettyja();
             return true;
         } else {
-            System.out.println("Ei voi kääntää!");
             peli.nollaaKaannetyt();
             return false;
         }
     }
 
-    private static boolean kaanna1(Kentta peli, int paikka1) {
-        //System.out.println("Anna 1.laatan paikka");
-        if (Operaatiot.voikoKaantaa(peli, paikka1)) {
-            peli.getLaatat().get(paikka1).nayta();
-            peli.lisaaKaannettyja();
-            return true;
-        } else {
-            System.out.println("Ei voi kääntää!");
-            peli.nollaaKaannetyt();
-            return false;
+    /**
+     * Metodi suoritaa tarvittavat toimenpiteet laattaparin löydyttyä; -nollaa
+     * käännettynä olevien laattojen määrän -merkitsee parin löytyneeksi
+     * -piilottaa löydetyt laatat kentän käännetyistä, sillä ne on jo asetettu
+     * löydetyiksi
+     *
+     * @param peli Kenttä, jonka arvoja muokataan
+     * @return
+     */
+    public static boolean oliPari(Kentta peli) {
+        peli.nollaaKaannetyt();
+        peli.loytyi();
+        for (int i = 0; i < peli.getLaatat().size(); i++) {
+            if (peli.getLaatat().get(i).getTunniste() == pari.get(0).getTunniste()) {
+                peli.getLaatat().get(i).piilota();
+                peli.getLaatat().get(i).loyda();
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Etsii käännetyt laatat ja kutsuu eiPari-metodia niillä.
+     *
+     * @param peli
+     */
+    private static void eiOllutPari(Kentta peli) {
+
+        for (int i = 0; i < peli.getLaatat().size(); i++) {
+            if (!peli.getLaatat().get(i).onkoLoydetty()) {
+                peli.getLaatat().get(i).piilota();
+                peli.nollaaKaannetyt();
+            }
+
 
         }
+
     }
 }
