@@ -121,6 +121,7 @@ public class Operaatiot {
                 peli.getLaatat().get(i).loyda();
             }
         }
+        
         return true;
     }
 

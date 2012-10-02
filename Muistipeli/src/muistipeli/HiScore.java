@@ -12,7 +12,6 @@ package muistipeli;
 import java.io.Serializable;
 
 class HiScore  implements Serializable, Comparable<HiScore>{
-    private static final long serialVersionUID = 1L;
         private int pisteet;
         private String nimi;
 

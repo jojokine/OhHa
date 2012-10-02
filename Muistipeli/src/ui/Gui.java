@@ -17,11 +17,12 @@ import muistipeli.Operaatiot;
  */
 public class Gui extends JFrame {
 
-    int i = 0;
-    static JPanel peliKentta;
-    GridLayout kentanKoko;
-    int kaannettava;
-    static ArrayList<Laatta> kaannetyt;
+    private int i = 0;
+    private static JPanel peliKentta;
+    private GridLayout kentanKoko;
+    private int kaannettava;
+    private static ArrayList<Laatta> kaannetyt;
+    private static int kaannot;
 
     public Gui(int vaikeus) {
 
@@ -30,6 +31,9 @@ public class Gui extends JFrame {
 
         final muistipeli.Kentta peli;
         peli = new muistipeli.Kentta(vaikeus);
+        muistipeli.PisteSailo pelinPisteet;
+        pelinPisteet = new muistipeli.PisteSailo();
+
 
         if (peli.getLaattoja() == 16) {
             kentanKoko = new GridLayout(4, 4);
@@ -89,12 +93,13 @@ public class Gui extends JFrame {
                                             }
                                         }
                                         kaannetyt.clear();
-                                        if (peli.getParit() == (peli.getLaattoja()/2)){
-                                            
-                                        }
-                                        
+
+
                                     }
                                 }
+                            }
+
+                            if (peli.getParit() == (peli.getLaattoja() / 2)) {
                             }
                         }
                     });
@@ -115,11 +120,14 @@ public class Gui extends JFrame {
         // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
     }
 
-    public static void uusiPeli(int vaikeus) {
+    public void uusiPeli(int vaikeus) {
         Gui ruudukko = new Gui(vaikeus);
         ruudukko.setTitle("Muistipeli");
         ruudukko.setPreferredSize(new Dimension(800, 800));
         ruudukko.add(peliKentta);
+        JTextField k = new JTextField();
+        k.setText("Olet kääntänyt laattoja" +  + "kertaa");
+        ruudukko.add(k, BorderLayout.SOUTH);
         ruudukko.pack();
         ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ruudukko.setVisible(true);
