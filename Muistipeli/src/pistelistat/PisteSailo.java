@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package muistipeli;
+package pistelistat;
 
 /**
  *
@@ -11,6 +11,12 @@ package muistipeli;
 import java.util.*;
 import java.io.*;
 
+/**
+ * PisteSailo luo HiScore-olioita parametrien perusteella
+ * ja tallentaa niitä tiedostoon.
+ * @author jojokine
+ */
+
 public class PisteSailo {
 
     private ArrayList<HiScore> tulokset;
@@ -18,6 +24,7 @@ public class PisteSailo {
     ObjectOutputStream tallentaja = null;
     ObjectInputStream lukija = null;
 
+    
     public PisteSailo() {
 
         tulokset = new ArrayList<HiScore>();
@@ -28,12 +35,29 @@ public class PisteSailo {
         return tulokset;
     }
 
-    public void lisaaPisteet(String nimi, int pisteet) {
-        lataaPistetiedosto();
-        tulokset.add(new HiScore(nimi, pisteet));
-        paivitaPistetiedosto();
+    /**
+     * Metodi lisää pelaajan pisteet pistelistaan.
+     * @param nimi pelaajan nimi
+     * @param pisteet pelaajan pisteet
+     * @return 
+     */
+    public boolean lisaaPisteet(String nimi, int pisteet) {
+        if (!nimi.isEmpty()) {
+            lataaPistetiedosto();
+            tulokset.add(new HiScore(nimi, pisteet));
+            Collections.sort(tulokset);
+            Collections.reverse(tulokset);
+            paivitaPistetiedosto();
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
+    /**
+     * Metodi avaa pistelistan tiedostosta.
+     */
     public void lataaPistetiedosto() {
         try {
             lukija = new ObjectInputStream(new FileInputStream(TULOSTIEDOSTO));
@@ -51,6 +75,9 @@ public class PisteSailo {
         }
     }
 
+    /**
+     * metodi päivittää pistetiedostoa tai luo uuden tiedoston.
+     */
     public void paivitaPistetiedosto() {
         try {
             tallentaja = new ObjectOutputStream(new FileOutputStream(TULOSTIEDOSTO));

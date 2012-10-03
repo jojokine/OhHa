@@ -39,7 +39,7 @@ public class TekstiUi {
                 peli.loytyi();
             } else {
                 System.out.println("Ei pari!");
-                peli.eiPari(paikka1, paikka2);
+                //peli.eiPari(paikka1, paikka2);
             }
         }
     }

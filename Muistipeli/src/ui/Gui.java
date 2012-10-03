@@ -22,7 +22,20 @@ public class Gui extends JFrame {
     private GridLayout kentanKoko;
     private int kaannettava;
     private static ArrayList<Laatta> kaannetyt;
+    private static pisteSyotto syotto;
     private static int kaannot;
+    private static Gui ruudukko;
+
+    public static void uusiPeli(int vaikeus) {
+        ruudukko = new Gui(vaikeus);
+        ruudukko.setTitle("Muistipeli");
+        ruudukko.setPreferredSize(new Dimension(800, 800));
+        ruudukko.add(peliKentta);
+        ruudukko.pack();
+        ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ruudukko.setVisible(true);
+
+    }
 
     public Gui(int vaikeus) {
 
@@ -31,8 +44,6 @@ public class Gui extends JFrame {
 
         final muistipeli.Kentta peli;
         peli = new muistipeli.Kentta(vaikeus);
-        muistipeli.PisteSailo pelinPisteet;
-        pelinPisteet = new muistipeli.PisteSailo();
 
 
         if (peli.getLaattoja() == 16) {
@@ -72,6 +83,8 @@ public class Gui extends JFrame {
                             }
                             // System.out.println("yritetään kääntää" + ((kaannettava)));
                             if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
+                                Gui.kaannot = peli.getKaannot();
+                                System.out.println(peli.getKaannot());
                                 kaannetyt.add(peli.getLaatat().get((kaannettava)));
                                 // System.out.println("guinkaannetyt" + kaannetyt.toString());
 
@@ -83,6 +96,7 @@ public class Gui extends JFrame {
                                             if (peli.getLaatat().get(i).onkoLoydetty()) {
                                                 laatat[i].setEnabled(false);
                                                 kaannetyt.clear();
+
                                             }
                                         }
                                     } else {
@@ -96,11 +110,18 @@ public class Gui extends JFrame {
 
 
                                     }
+                                    if (peli.getParit() == (peli.getLaattoja() / 2)) {
+                                        System.out.println("peli loppui");
+                                        syotto = new pisteSyotto();
+                                        syotto.setTitle("Muistipeli");
+                                        syotto.setPreferredSize(new Dimension(300, 300));
+                                        syotto.pack();
+                                        syotto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                                        syotto.setVisible(true);
+                                    }
                                 }
                             }
 
-                            if (peli.getParit() == (peli.getLaattoja() / 2)) {
-                            }
                         }
                     });
 
@@ -118,19 +139,5 @@ public class Gui extends JFrame {
         }
         // laatat[0].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari1.jpg"))));
         // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
-    }
-
-    public void uusiPeli(int vaikeus) {
-        Gui ruudukko = new Gui(vaikeus);
-        ruudukko.setTitle("Muistipeli");
-        ruudukko.setPreferredSize(new Dimension(800, 800));
-        ruudukko.add(peliKentta);
-        JTextField k = new JTextField();
-        k.setText("Olet kääntänyt laattoja" +  + "kertaa");
-        ruudukko.add(k, BorderLayout.SOUTH);
-        ruudukko.pack();
-        ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ruudukko.setVisible(true);
-
     }
 }

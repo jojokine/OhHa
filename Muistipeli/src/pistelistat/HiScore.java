@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package muistipeli;
+package pistelistat;
 
 /**
  *
@@ -11,7 +11,12 @@ package muistipeli;
     
 import java.io.Serializable;
 
-class HiScore  implements Serializable, Comparable<HiScore>{
+/**
+ * Luokka määrittää HiScore-olion ominaisuudet, jokainen olio sisältää yhden pelaajan yhden pelikerran pelituloksen.
+ * @author jojokine
+ */
+
+public class HiScore  implements Serializable, Comparable<HiScore>{
         private int pisteet;
         private String nimi;
 

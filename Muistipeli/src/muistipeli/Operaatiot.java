@@ -15,6 +15,9 @@ import java.util.ArrayList;
 public class Operaatiot {
 
     private static ArrayList<Laatta> pari;
+    private static pistelistat.PisteSailo pelinPisteet;
+    private static int pisteet;
+    
 //    static int paikka1;
 //    static int paikka2;
 
@@ -96,6 +99,8 @@ public class Operaatiot {
         if (Operaatiot.voikoKaantaa(peli, paikka)) {
             peli.getLaatat().get(paikka).nayta();
             peli.lisaaKaannettyja();
+            peli.lisaaKaantoja();
+            pisteet = peli.getKaannot();
             return true;
         } else {
             peli.nollaaKaannetyt();
@@ -121,10 +126,8 @@ public class Operaatiot {
                 peli.getLaatat().get(i).loyda();
             }
         }
-        
-        return true;
+                return true;
     }
-
     /**
      * Etsii käännetyt laatat ja kutsuu eiPari-metodia niillä.
      *
@@ -141,5 +144,17 @@ public class Operaatiot {
 
         }
 
+    }
+    
+    public static void pisteetSailoon(String nimi){
+        pelinPisteet = new pistelistat.PisteSailo();
+        pelinPisteet.lisaaPisteet(nimi, pisteet);
+        
+        System.out.println(nimi + pisteet);
+    }
+    
+    public static pistelistat.PisteSailo pisteetSailosta(){
+        pelinPisteet.lataaPistetiedosto();
+        return pelinPisteet;
     }
 }

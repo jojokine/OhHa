@@ -17,7 +17,8 @@ public class Muistipeli {
 
     public static void main(String[] args) {
         
-    Gui.uusiPeli(1);
+    Gui.uusiPeli(0);
+    
 
     }
 }
