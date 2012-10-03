@@ -20,7 +20,7 @@ import java.io.*;
 public class PisteSailo {
 
     private ArrayList<HiScore> tulokset;
-    private static final String TULOSTIEDOSTO = "tulokset.dat";
+    private static String TULOSTIEDOSTO;
     ObjectOutputStream tallentaja = null;
     ObjectInputStream lukija = null;
 
@@ -28,6 +28,7 @@ public class PisteSailo {
     public PisteSailo() {
 
         tulokset = new ArrayList<HiScore>();
+        TULOSTIEDOSTO = "tulokset.dat";
     }
 
     public ArrayList<HiScore> getPisteet() {

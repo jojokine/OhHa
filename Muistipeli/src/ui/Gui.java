@@ -76,11 +76,11 @@ public class Gui extends JFrame {
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            
+
 
                             // kaannettava = 0;
 
-                            for (int i = 1; i < laatat.length; i++) {
+                            for (int i = 0; i < laatat.length; i++) {
                                 if (e.getSource() == laatat[i]) {
                                     kaannettava = i;
                                 }
@@ -108,17 +108,15 @@ public class Gui extends JFrame {
                                     } else {
 
                                         // System.out.println("eivät olleet pari!");
-                                        try {
-                                                    Thread.sleep(500);
-                                                    for (int j = 0; j < peli.getLaatat().size(); j++) {
+
+
+                                        for (int j = 0; j < peli.getLaatat().size(); j++) {
                                             if (laatat[j].isEnabled()) {
                                                 laatat[j].setSelected(false);
                                             }
                                         }
-                                                } catch (InterruptedException ex) {
-                                                    Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
-                                                }
-                                        
+
+
                                         kaannetyt.clear();
 
 
