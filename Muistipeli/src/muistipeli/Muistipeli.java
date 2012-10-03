@@ -4,9 +4,6 @@
  */
 package muistipeli;
 
-import ui.TekstiUi;
-import java.util.ArrayList;
-import java.util.Scanner;
 import ui.Gui;
 
 /**
@@ -14,10 +11,12 @@ import ui.Gui;
  * @author jojokine
  */
 public class Muistipeli {
+    
+    
 
     public static void main(String[] args) {
-        
-    Gui.uusiPeli(0);
+               
+    Gui.uusiPeli(ui.Pop.valitseNappula("Valitse Vaikeustaso!", "Helppo", "Keskivaikea", "Vaikea"));
     
 
     }

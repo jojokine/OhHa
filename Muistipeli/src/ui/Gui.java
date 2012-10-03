@@ -140,12 +140,9 @@ public class Gui extends JFrame {
 
         }
         for (int j = 0; j < peli.getLaatat().size(); j++) {
-            if (peli.getLaatat().get(j).getTunniste() % 2 == 0) {
-                laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
-            } else if (peli.getLaatat().get(j).getTunniste() % 2 != 0) {
-                laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + ((peli.getLaatat().get(j).getTunniste()) - 1) + ".png"))));
+                 laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
+           
             }
-        }
-
+        
     }
 }
