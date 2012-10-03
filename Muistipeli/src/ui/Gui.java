@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import muistipeli.Laatta;
 import muistipeli.Operaatiot;
 
@@ -62,11 +64,11 @@ public class Gui extends JFrame {
         }
 
 
-        final JToggleButton[] laatat = new JToggleButton[peli.getLaattoja()];
+        final JButton[] laatat = new JButton[peli.getLaattoja()];
 
         peliKentta = new JPanel(kentanKoko);
         for (i = 0; i < laatat.length; i++) {
-            laatat[i] = new JToggleButton();
+            laatat[i] = new JButton();
             laatat[i].setIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pohja.jpg"))));
             // laatat[i] = new JButton(Integer.toString(i + 1));
             laatat[i].setSize(50, 50);
@@ -74,7 +76,9 @@ public class Gui extends JFrame {
                     new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            kaannettava = 0;
+                            
+
+                            // kaannettava = 0;
 
                             for (int i = 1; i < laatat.length; i++) {
                                 if (e.getSource() == laatat[i]) {
@@ -85,6 +89,7 @@ public class Gui extends JFrame {
                             if (Operaatiot.kaannaLaatta(peli, (kaannettava))) {
                                 Gui.kaannot = peli.getKaannot();
                                 System.out.println(peli.getKaannot());
+                                laatat[kaannettava].setSelected(true);
                                 kaannetyt.add(peli.getLaatat().get((kaannettava)));
                                 // System.out.println("guinkaannetyt" + kaannetyt.toString());
 
@@ -95,17 +100,25 @@ public class Gui extends JFrame {
                                         for (int i = 0; i < peli.getLaatat().size(); i++) {
                                             if (peli.getLaatat().get(i).onkoLoydetty()) {
                                                 laatat[i].setEnabled(false);
+                                                laatat[i].setSelected(true);
                                                 kaannetyt.clear();
 
                                             }
                                         }
                                     } else {
+
                                         // System.out.println("eivät olleet pari!");
-                                        for (int j = 0; j < peli.getLaatat().size(); j++) {
+                                        try {
+                                                    Thread.sleep(500);
+                                                    for (int j = 0; j < peli.getLaatat().size(); j++) {
                                             if (laatat[j].isEnabled()) {
                                                 laatat[j].setSelected(false);
                                             }
                                         }
+                                                } catch (InterruptedException ex) {
+                                                    Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+                                                }
+                                        
                                         kaannetyt.clear();
 
 
@@ -128,16 +141,13 @@ public class Gui extends JFrame {
             peliKentta.add(laatat[i]);
 
         }
-        for (int j = 0;
-                j < peli.getLaatat()
-                .size(); j++) {
+        for (int j = 0; j < peli.getLaatat().size(); j++) {
             if (peli.getLaatat().get(j).getTunniste() % 2 == 0) {
                 laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
             } else if (peli.getLaatat().get(j).getTunniste() % 2 != 0) {
                 laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + ((peli.getLaatat().get(j).getTunniste()) - 1) + ".png"))));
             }
         }
-        // laatat[0].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari1.jpg"))));
-        // laatat[2].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari2.jpg"))));
+
     }
 }
