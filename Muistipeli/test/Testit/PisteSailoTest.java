@@ -28,14 +28,14 @@ public class PisteSailoTest {
 
     @Before
     public void setUp() {
-        testiPisteet = new PisteSailo();
+        testiPisteet = new PisteSailo(5);
         score = new HiScore(nimi, pisteet);
     }
 
     @Test
     public void LisaaPisteetLisaa() {
         assertTrue(testiPisteet.lisaaPisteet(nimi, pisteet));
-        
+
     }
 
     @Test
@@ -52,5 +52,8 @@ public class PisteSailoTest {
 
     }
 
-    
+    @Test
+    public void PisteetLöytyyTiedostosta() {
+        assertTrue(testiPisteet.getPisteet().get(0).getNimi().equals(nimi));
+    }
 }

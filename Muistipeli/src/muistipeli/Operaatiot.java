@@ -17,6 +17,7 @@ public class Operaatiot {
     private static ArrayList<Laatta> pari;
     private static pistelistat.PisteSailo pelinPisteet;
     private static int pisteet;
+    private static int vaikeus;
     
 //    static int paikka1;
 //    static int paikka2;
@@ -101,6 +102,7 @@ public class Operaatiot {
             peli.lisaaKaannettyja();
             peli.lisaaKaantoja();
             pisteet = peli.getKaannot();
+            vaikeus = peli.getVaikeus();
             return true;
         } else {
             peli.nollaaKaannetyt();
@@ -147,7 +149,7 @@ public class Operaatiot {
     }
     
     public static void pisteetSailoon(String nimi){
-        pelinPisteet = new pistelistat.PisteSailo();
+        pelinPisteet = new pistelistat.PisteSailo(vaikeus);
         pelinPisteet.lisaaPisteet(nimi, pisteet);
         
         System.out.println(nimi + pisteet);

@@ -25,10 +25,10 @@ public class PisteSailo {
     ObjectInputStream lukija = null;
 
     
-    public PisteSailo() {
+    public PisteSailo(int vaikeus) {
 
         tulokset = new ArrayList<HiScore>();
-        TULOSTIEDOSTO = "tulokset.dat";
+        TULOSTIEDOSTO = "tulokset"+vaikeus+".dat";
     }
 
     public ArrayList<HiScore> getPisteet() {
