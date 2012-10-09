@@ -70,6 +70,7 @@ public class pisteSyotto extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
 
         jButton1.setText("Tallenna!");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +111,6 @@ public class pisteSyotto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 Operaatiot.pisteetSailoon(jTextField1.getText());
-
-dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

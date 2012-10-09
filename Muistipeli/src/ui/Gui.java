@@ -25,13 +25,52 @@ public class Gui extends JFrame {
     private int kaannettava;
     private static ArrayList<Laatta> kaannetyt;
     private static pisteSyotto syotto;
+    private static String lista;
     private static int kaannot;
     private static Gui ruudukko;
+    private static JMenuBar mb = new JMenuBar();
+    private static JMenu mnuValikko = new JMenu("Valikko");
+    private static JMenuItem mnuItemLopeta = new JMenuItem("Lopeta");
+    private static JMenuItem mnuItemPisteet = new JMenuItem("Parhaat tulokset");
+    private static JMenu mnuApua = new JMenu("Apua");
+    private static JMenuItem mnuItemAbout = new JMenuItem("About");
 
-    public static void uusiPeli(int vaikeus) {
+    public static void uusiPeli(final int vaikeus) {
         ruudukko = new Gui(vaikeus);
         ruudukko.setTitle("Muistipeli");
         ruudukko.setPreferredSize(new Dimension(800, 800));
+        ruudukko.setJMenuBar(mb);
+
+        mnuItemLopeta.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.exit(0);
+                    }
+                });
+        mnuItemPisteet.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        lista = "Parhaat tulokset vaikeustasolle\nNimi:      Kääntökertoja:\n";
+                        for (int i = 0; i < Operaatiot.pisteetSailosta(vaikeus).getPisteet().size(); i++) {
+                            lista = lista + Operaatiot.pisteetSailosta(vaikeus).getPisteet().get(i).getNimi() + "     " + Operaatiot.pisteetSailosta(vaikeus).getPisteet().get(i).getPisteet() + "\n";
+                        }
+                        Pop.ilmoita(lista);
+
+                    }
+                });
+
+
+
+
+        mnuValikko.add(mnuItemLopeta);
+        mnuValikko.add(mnuItemPisteet);
+        mnuApua.add(mnuItemAbout);
+        mb.add(mnuValikko);
+        mb.add(mnuApua);
+
+
         ruudukko.add(peliKentta);
         ruudukko.pack();
         ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,9 +89,11 @@ public class Gui extends JFrame {
 
         if (peli.getLaattoja() == 16) {
             kentanKoko = new GridLayout(4, 4);
-        } else if (peli.getLaattoja() == 24) {
+        }
+        if (peli.getLaattoja() == 24) {
             kentanKoko = new GridLayout(6, 4);
-        } else if (peli.getLaattoja() == 36) {
+        }
+        if (peli.getLaattoja() == 36) {
             kentanKoko = new GridLayout(6, 6);
         }
 
@@ -124,8 +165,7 @@ public class Gui extends JFrame {
                                     if (peli.getParit() == (peli.getLaattoja() / 2)) {
                                         System.out.println("peli loppui");
                                         syotto = new pisteSyotto();
-                                        syotto.setTitle("Muistipeli");
-                                        syotto.setPreferredSize(new Dimension(300, 300));
+                                        syotto.setTitle("Pisteiden tallennus");
                                         syotto.pack();
                                         syotto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                                         syotto.setVisible(true);
@@ -139,10 +179,10 @@ public class Gui extends JFrame {
             peliKentta.add(laatat[i]);
 
         }
+
         for (int j = 0; j < peli.getLaatat().size(); j++) {
-                 laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
-           
-            }
-        
+            laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
+        }
+
     }
 }

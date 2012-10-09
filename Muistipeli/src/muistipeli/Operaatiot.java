@@ -155,8 +155,9 @@ public class Operaatiot {
         System.out.println(nimi + pisteet);
     }
     
-    public static pistelistat.PisteSailo pisteetSailosta(){
-        pelinPisteet.lataaPistetiedosto();
+    public static pistelistat.PisteSailo pisteetSailosta(int taso){
+        pelinPisteet = new pistelistat.PisteSailo(taso);
+        pelinPisteet.getPisteet();
         return pelinPisteet;
     }
 }
