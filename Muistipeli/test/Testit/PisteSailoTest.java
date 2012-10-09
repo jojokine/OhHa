@@ -49,6 +49,7 @@ public class PisteSailoTest {
         testiPisteet.lisaaPisteet(nimi, pisteet);
         testiPisteet.lisaaPisteet("matti", 15);
         assertTrue(testiPisteet.getPisteet().get(0).getNimi().equals(nimi));
+        assertTrue(testiPisteet.getPisteet().get(testiPisteet.getPisteet().size()-1).getNimi().equals("erkki"));
 
     }
 

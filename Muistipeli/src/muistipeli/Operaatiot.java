@@ -18,9 +18,6 @@ public class Operaatiot {
     private static pistelistat.PisteSailo pelinPisteet;
     private static int pisteet;
     private static int vaikeus;
-    
-//    static int paikka1;
-//    static int paikka2;
 
     /**
      * Metodi tutki kentällä käännettynä olevaa laattaparia ja palauttaa true
@@ -31,28 +28,12 @@ public class Operaatiot {
      */
     public static boolean onkoPari(Kentta peli) {
         pari = haeKaannettyPari(peli);
-        // System.out.println("onkopari" + pari.toString());
         if (pari.get(0).getTunniste() == pari.get(1).getTunniste()) {
             return oliPari(peli);
         } else {
             eiOllutPari(peli);
             return false;
         }
-//        if (pari.size() < 2) {
-//            eiOllutPari(peli);
-//            return false;
-//        } else if (pari.get(0).getTunniste() % 2 != 0 && pari.get(1).getTunniste() % 2 != 0) {
-//            eiOllutPari(peli);
-//            return false;
-//        } else if (pari.get(0).getTunniste() % 2 == 0 && pari.get(1).getTunniste() % 2 == 0) {
-//            eiOllutPari(peli);
-//            return false;
-//        } else if (pari.get(0).getTunniste() != (pari.get(1).getTunniste() + 1) && pari.get(0).getTunniste() != (pari.get(1).getTunniste() - 1)) {
-//            eiOllutPari(peli);
-//            return false;
-//        } else {
-//            return oliPari(peli);
-//        }
     }
 
     /**
@@ -128,8 +109,9 @@ public class Operaatiot {
                 peli.getLaatat().get(i).loyda();
             }
         }
-                return true;
+        return true;
     }
+
     /**
      * Etsii käännetyt laatat ja kutsuu eiPari-metodia niillä.
      *
@@ -142,20 +124,27 @@ public class Operaatiot {
                 peli.getLaatat().get(i).piilota();
                 peli.nollaaKaannetyt();
             }
-
-
         }
+    }
 
-    }
-    
-    public static void pisteetSailoon(String nimi){
-        pelinPisteet = new pistelistat.PisteSailo(vaikeus);
-        pelinPisteet.lisaaPisteet(nimi, pisteet);
+    /**
+     * Tallentaa pisteet säilöön pelin vaikeustason mukaiseen tiedostoon.
+     *
+     * @param nimi sisältää pelaajan nimen
+     */
+    public static boolean pisteetSailoon(String nimi) {
         
-        System.out.println(nimi + pisteet);
+        pelinPisteet = new pistelistat.PisteSailo(vaikeus);
+        return pelinPisteet.lisaaPisteet(nimi, pisteet);
     }
-    
-    public static pistelistat.PisteSailo pisteetSailosta(int taso){
+
+    /**
+     * Hakee pisteet säilötiedostosta vaikeustason mukaan.
+     *
+     * @param taso sisältää pelin vaikeustason
+     * @return
+     */
+    public static pistelistat.PisteSailo pisteetSailosta(int taso) {
         pelinPisteet = new pistelistat.PisteSailo(taso);
         pelinPisteet.getPisteet();
         return pelinPisteet;
