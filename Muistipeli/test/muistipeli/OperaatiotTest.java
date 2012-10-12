@@ -101,9 +101,9 @@ public class OperaatiotTest {
         assertFalse(peli.getLaatat().get(5).getTila());
         assertFalse(peli.getLaatat().get(8).getTila());
     }
-    
+
     @Test
-    public void onkoPariNollaakaannetytJaLisaaLoytyneitaJosPari(){
+    public void onkoPariNollaakaannetytJaLisaaLoytyneitaJosPari() {
         peli.getLaatat().get(5).setTunniste(2);
         peli.getLaatat().get(5).nayta();
         peli.getLaatat().get(8).setTunniste(2);
@@ -112,9 +112,9 @@ public class OperaatiotTest {
         assertEquals(0, peli.getKaannetyt(), vertailuTarkkuus);
         assertEquals(1, peli.getParit(), vertailuTarkkuus);
     }
-    
+
     @Test
-    public void onkoPariNollaakaannetytJosEiPari(){
+    public void onkoPariNollaakaannetytJosEiPari() {
         peli.getLaatat().get(5).setTunniste(2);
         peli.getLaatat().get(5).nayta();
         peli.getLaatat().get(8).setTunniste(5);
@@ -122,7 +122,6 @@ public class OperaatiotTest {
         Operaatiot.onkoPari(peli);
         assertEquals(0, peli.getKaannetyt(), vertailuTarkkuus);
     }
-    
 
     @Test
     public void kaannaLaattaKaantaaOikein() {
