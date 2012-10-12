@@ -107,7 +107,7 @@ public class Gui extends JFrame {
         peliKentta = new JPanel(kentanKoko);
         for (i = 0; i < laatat.length; i++) {
             laatat[i] = new JButton();
-            laatat[i].setIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pohja.jpg"))));
+            laatat[i].setIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pohja.png"))));
             laatat[i].setSize(50, 50);
             laatat[i].addActionListener(
                     new ActionListener() {
@@ -161,6 +161,7 @@ public class Gui extends JFrame {
 
         }
         for (int j = 0; j < peli.getLaatat().size(); j++) {
+            System.out.println(peli.getLaatat().get(j).getTunniste());
             laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
         }
     }
