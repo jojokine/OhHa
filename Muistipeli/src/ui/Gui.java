@@ -114,12 +114,14 @@ public class Gui extends JFrame {
                         @Override
                         public void actionPerformed(ActionEvent e) {
 
-                            for (int j = 0; j < peli.getLaatat().size(); j++) {
-                                if (laatat[j].isEnabled()) {
-                                    laatat[j].setSelected(false);
+                            if (kaannetyt.size() >= 2) {
+                                for (int j = 0; j < peli.getLaatat().size(); j++) {
+                                    if (laatat[j].isEnabled()) {
+                                        laatat[j].setSelected(false);
+                                    }
                                 }
+                                kaannetyt.clear();
                             }
-                            kaannetyt.clear();
 
                             for (int i = 0; i < laatat.length; i++) {
                                 if (e.getSource() == laatat[i]) {
