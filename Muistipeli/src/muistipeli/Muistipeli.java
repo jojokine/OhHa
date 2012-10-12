@@ -14,7 +14,7 @@ public class Muistipeli {
 
     public static void main(String[] args) {
 
-        Gui.uusiPeli(ui.Pop.valitseNappula("Valitse Vaikeustaso!", "Helppo", "Keskivaikea", "Vaikea"));
+        Gui.uusiPeli(ui.Gui.valitseNappula("Valitse Vaikeustaso!", "Helppo", "Keskivaikea", "Vaikea"));
 
     }
 }

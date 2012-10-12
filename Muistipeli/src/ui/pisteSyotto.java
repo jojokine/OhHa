@@ -111,11 +111,11 @@ public class pisteSyotto extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(Operaatiot.pisteetSailoon(jTextField1.getText())){
-            Pop.ilmoita("Pisteesi tallennettiin!");
+            ui.Gui.ilmoita("Pisteesi tallennettiin!");
             dispose();
         }
         else{
-            Pop.ilmoita("Et syöttänyt nimeäsi!");
+            ui.Gui.ilmoita("Et syöttänyt nimeäsi!");
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

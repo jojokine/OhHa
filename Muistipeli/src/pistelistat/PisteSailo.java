@@ -10,14 +10,13 @@ package pistelistat;
  */
 import java.util.*;
 import java.io.*;
-import ui.Pop;
 
 /**
- * PisteSailo luo HiScore-olioita parametrien perusteella
- * ja tallentaa niitä tiedostoon.
+ * PisteSailo luo HiScore-olioita parametrien perusteella ja tallentaa niitä
+ * tiedostoon.
+ *
  * @author jojokine
  */
-
 public class PisteSailo {
 
     private ArrayList<HiScore> tulokset;
@@ -25,15 +24,16 @@ public class PisteSailo {
     ObjectOutputStream tallentaja = null;
     ObjectInputStream lukija = null;
 
-  /**
-   * luodaan uusi pistesäilö pelin vaikeustason mukaan,
-   * myös tallennustiedosto nimytyy vaikeuden mukaan
-   * @param vaikeus pelin vaikeustaso
-   */  
+    /**
+     * luodaan uusi pistesäilö pelin vaikeustason mukaan, myös tallennustiedosto
+     * nimytyy vaikeuden mukaan
+     *
+     * @param vaikeus pelin vaikeustaso
+     */
     public PisteSailo(int vaikeus) {
 
         tulokset = new ArrayList<HiScore>();
-        TULOSTIEDOSTO = "tulokset"+vaikeus+".dat";
+        TULOSTIEDOSTO = "tulokset" + vaikeus + ".dat";
     }
 
     public ArrayList<HiScore> getPisteet() {
@@ -43,9 +43,10 @@ public class PisteSailo {
 
     /**
      * Metodi lisää pelaajan pisteet pistelistaan.
+     *
      * @param nimi pelaajan nimi
      * @param pisteet pelaajan pisteet
-     * @return 
+     * @return
      */
     public boolean lisaaPisteet(String nimi, int pisteet) {
         if (!nimi.isEmpty()) {
@@ -55,8 +56,7 @@ public class PisteSailo {
             Collections.reverse(tulokset);
             paivitaPistetiedosto();
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -69,7 +69,7 @@ public class PisteSailo {
             lukija = new ObjectInputStream(new FileInputStream(TULOSTIEDOSTO));
             tulokset = (ArrayList<HiScore>) lukija.readObject();
         } catch (Exception e) {
-            Pop.ilmoita("Tiedoston avaaminen ei onnistu" + e.getMessage());
+            ui.Gui.ilmoita("Tiedoston avaaminen ei onnistu" + e.getMessage());
         }
         try {
             if (tallentaja != null) {
@@ -89,9 +89,9 @@ public class PisteSailo {
             tallentaja = new ObjectOutputStream(new FileOutputStream(TULOSTIEDOSTO));
             tallentaja.writeObject(tulokset);
         } catch (FileNotFoundException e) {
-            Pop.ilmoita("Tiedostoa ei löydy" + e.getMessage() + ",ohjelma luo uuden tiedoston.");
+            ui.Gui.ilmoita("Tiedostoa ei löydy" + e.getMessage() + ",ohjelma luo uuden tiedoston.");
         } catch (IOException e) {
-            Pop.ilmoita("Kirjoittaminen ei onistunut" + e.getMessage());
+            ui.Gui.ilmoita("Kirjoittaminen ei onistunut" + e.getMessage());
         }
         try {
             if (tallentaja != null) {

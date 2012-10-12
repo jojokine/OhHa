@@ -57,7 +57,7 @@ public class Gui extends JFrame {
                         for (int i = 0; i < Operaatiot.pisteetSailosta(vaikeus).getPisteet().size(); i++) {
                             lista = lista + Operaatiot.pisteetSailosta(vaikeus).getPisteet().get(i).getNimi() + "     " + Operaatiot.pisteetSailosta(vaikeus).getPisteet().get(i).getPisteet() + "\n";
                         }
-                        Pop.ilmoita(lista);
+                        ilmoita(lista);
 
                     }
                 });
@@ -66,7 +66,7 @@ public class Gui extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         ruudukko.dispose();
-                        Gui.uusiPeli(ui.Pop.valitseNappula("Valitse Vaikeustaso!", "Helppo", "Keskivaikea", "Vaikea"));
+                        Gui.uusiPeli(valitseNappula("Valitse Vaikeustaso!", "Helppo", "Keskivaikea", "Vaikea"));
                     }
                 });
 
@@ -81,6 +81,25 @@ public class Gui extends JFrame {
         ruudukko.pack();
         ruudukko.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ruudukko.setVisible(true);
+    }
+
+    public static int valitseNappula(String kysymys, String... valinnat) {
+        if (valinnat.length == 0) {
+            throw new IllegalArgumentException("No values supplied.");
+        }
+        return JOptionPane.showOptionDialog(null,
+                kysymys,
+                "",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                valinnat,
+                valinnat[0]);
+    }
+
+    public static void ilmoita(String viesti) {
+        JOptionPane.showMessageDialog(null,
+                viesti, "", JOptionPane.PLAIN_MESSAGE);
     }
 
     public Gui(int vaikeus) {
