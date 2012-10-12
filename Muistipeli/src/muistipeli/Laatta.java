@@ -14,6 +14,10 @@ public class Laatta {
     private boolean laatanTila;
     private int tunniste;
 
+    /**
+     * Luo uuden laattaolion
+     * @param laatanTunniste yhteinen tunniste, jonka laatta ja sen pari saavat
+     */
     public Laatta(int laatanTunniste) {
         onkoLoydetty = false;
         laatanTila = false;

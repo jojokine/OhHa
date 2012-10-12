@@ -21,9 +21,7 @@ public class Kentta {
     private int kaannettyna;
     private int laattoja;
     private ArrayList<Laatta> pelinLaatat;
-
-    // private Laatta [] laatta;
-    
+  
     /**
      * Luo uuden kentän, jolla laattoja annetun vaikeustason mukainen määrä.
      * @param vaikeus pelin vaikeustaso
@@ -88,21 +86,4 @@ public class Kentta {
     public void nollaaKaannetyt() {
         kaannettyna = 0;
     }
-
-//    public int[][] haeLaatttojenIndeksit(int tunniste) {
-//        int[][] indeksit;
-//        for (int j = 0; j < getLaatat().size(); j++) {
-//            if (getLaatat().get(j).getTunniste() == tunniste) {
-//                           }
-//        }
-//        return 0;
-//    }
-    
-    
-//    public void eiPari(int laatta1, int laatta2) {
-//        nollaaKaannetyt();
-//        pelinLaatat.get(laatta1).piilota();
-//        pelinLaatat.get(laatta2).piilota();
-//        kaannot++;
-//    }
 }

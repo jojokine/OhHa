@@ -27,7 +27,11 @@ public class HiScore  implements Serializable, Comparable<HiScore>{
         public String getNimi() {
                 return nimi;
         }
-
+/**
+ * Luo uuden hiscore-olion
+ * @param nimi pelaajan nimi
+ * @param pisteet pelaajan "pistemäärä", eli kääntöjen määrä
+ */
         public HiScore(String nimi, int pisteet) {
                 this.pisteet = pisteet;
                 this.nimi = nimi;

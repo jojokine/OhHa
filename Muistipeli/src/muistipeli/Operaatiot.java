@@ -23,7 +23,7 @@ public class Operaatiot {
      * Metodi tutki kentällä käännettynä olevaa laattaparia ja palauttaa true
      * tai false sen mukaan, olivatko ne pari.
      *
-     * @param peli
+     * @param peli kenttä, jota tutkitaan
      * @return true/false sen mukaan, oliko kyseessä pari vai ei.
      */
     public static boolean onkoPari(Kentta peli) {
@@ -115,7 +115,7 @@ public class Operaatiot {
     /**
      * Etsii käännetyt laatat ja kutsuu eiPari-metodia niillä.
      *
-     * @param peli
+     * @param peli pelikenttä, jolta laattoja etsitään
      */
     private static void eiOllutPari(Kentta peli) {
 
@@ -133,7 +133,6 @@ public class Operaatiot {
      * @param nimi sisältää pelaajan nimen
      */
     public static boolean pisteetSailoon(String nimi) {
-        
         pelinPisteet = new pistelistat.PisteSailo(vaikeus);
         return pelinPisteet.lisaaPisteet(nimi, pisteet);
     }

@@ -10,6 +10,7 @@ package pistelistat;
  */
 import java.util.*;
 import java.io.*;
+import ui.Pop;
 
 /**
  * PisteSailo luo HiScore-olioita parametrien perusteella
@@ -24,7 +25,11 @@ public class PisteSailo {
     ObjectOutputStream tallentaja = null;
     ObjectInputStream lukija = null;
 
-    
+  /**
+   * luodaan uusi pistesäilö pelin vaikeustason mukaan,
+   * myös tallennustiedosto nimytyy vaikeuden mukaan
+   * @param vaikeus pelin vaikeustaso
+   */  
     public PisteSailo(int vaikeus) {
 
         tulokset = new ArrayList<HiScore>();
@@ -64,7 +69,7 @@ public class PisteSailo {
             lukija = new ObjectInputStream(new FileInputStream(TULOSTIEDOSTO));
             tulokset = (ArrayList<HiScore>) lukija.readObject();
         } catch (Exception e) {
-            System.out.println("Tiedoston avaaminen ei onnistu" + e.getMessage());
+            Pop.ilmoita("Tiedoston avaaminen ei onnistu" + e.getMessage());
         }
         try {
             if (tallentaja != null) {
@@ -84,9 +89,9 @@ public class PisteSailo {
             tallentaja = new ObjectOutputStream(new FileOutputStream(TULOSTIEDOSTO));
             tallentaja.writeObject(tulokset);
         } catch (FileNotFoundException e) {
-            System.out.println("Tiedostoa ei löydy" + e.getMessage() + ",ohjelma luo uuden tiedoston.");
+            Pop.ilmoita("Tiedostoa ei löydy" + e.getMessage() + ",ohjelma luo uuden tiedoston.");
         } catch (IOException e) {
-            System.out.println("Kirjoittaminen ei onistunut" + e.getMessage());
+            Pop.ilmoita("Kirjoittaminen ei onistunut" + e.getMessage());
         }
         try {
             if (tallentaja != null) {
