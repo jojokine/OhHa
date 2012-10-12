@@ -180,7 +180,6 @@ public class Gui extends JFrame {
 
         }
         for (int j = 0; j < peli.getLaatat().size(); j++) {
-            System.out.println(peli.getLaatat().get(j).getTunniste());
             laatat[j].setSelectedIcon((new javax.swing.ImageIcon(getClass().getResource("/kuvat/pari" + peli.getLaatat().get(j).getTunniste() + ".png"))));
         }
     }
